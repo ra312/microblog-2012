@@ -1,4 +1,4 @@
-from jinja2 import Markup
+from jinja2.utils import markupsafe as Markup
 
 
 class momentjs(object):

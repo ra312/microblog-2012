@@ -4,7 +4,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from flask_sqlalchemy import get_debug_queries
 from flask_babel import gettext
 from datetime import datetime
-from guess_language import guessLanguage
+# from guess_language import guessLanguage
 from app import app, db, lm, oid, babel
 from .forms import LoginForm, EditForm, PostForm, SearchForm
 from .models import User, Post
@@ -64,9 +64,10 @@ def internal_error(error):
 def index(page=1):
     form = PostForm()
     if form.validate_on_submit():
-        language = guessLanguage(form.post.data)
-        if language == 'UNKNOWN' or len(language) > 5:
-            language = ''
+        # language = guessLanguage(form.post.data)
+        # if language == 'UNKNOWN' or len(language) > 5:
+        #     language = ''
+        language = "english"
         post = Post(body=form.post.data, timestamp=datetime.utcnow(),
                     author=g.user, language=language)
         db.session.add(post)
